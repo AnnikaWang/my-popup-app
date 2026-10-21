@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nekoMood</title>
+    <!-- FIXED: Links to standard styles.css name -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="window-container">
+        <!-- Custom Mac Style Top Bar -->
+        <div class="title-bar">
+            <div class="dots-container">
+                <span class="dot close"></span>
+                <span class="dot minimize"></span>
+                <span class="dot maximize"></span>
+            </div>
+        </div>
+
+        <!-- App Main Frame Content Area -->
+        <div class="app-body">
+            <div class="brand">nekomood</div>
+
+            <!-- ==========================================
+                 VIEW 1: Home App Frame (Starts Active)
+                 ========================================== -->
+            <div id="home-screen" class="view-panel">
+                <!-- Replace your top-nav sections with this clean image structure -->
+                <div class="top-nav">
+                    <div class="nav-icon active" id="home-profile-nav">
+                        <img src="assets/home.jpg" alt="Home">
+                    </div>
+                    <div class="nav-icon active" id="profile-plus-nav">
+                        <img src="assets/plus.jpg" alt="Plus">
+                    </div>
+                    <div class="nav-icon active">
+                        <img src="assets/book.jpg" alt="Book">
+                    </div>
+                    <div class="nav-icon">
+                        <img src="assets/brain.jpg" alt="Brain">
+                    </div>
+                </div>
+
+                <div class="mood-bubble">
+                    <h2 class="mood-title">Mood Scale</h2>
+                    <p class="mood-subtitle">What meme are you feeling today?</p>
+                    
+                    <div class="meme-grid">
+                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/happy.jpg" alt="Happy"></div>
+                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/dizzy.jpg" alt="Dizzy"></div>
+                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/angry.jpg" alt="Angry"></div>
+                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/crying.jpg" alt="Crying"></div>
+                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/fire.jpg" alt="Fire"></div>
+                    </div>
+
+                    <button type="button" class="bubble-next-btn" id="bubble-next-btn">Next</button>
+                </div>
+
+                <div class="cat-companion">
+                    <img src="assets/black-cat.png" alt="Nekomood Cat">
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+                 VIEW 2: Profile Dashboard App Frame (Hidden)
+                 ========================================== -->
+            <div id="profile-screen" class="view-panel hidden">
+                <!-- Replace your top-nav sections with this clean image structure -->
+                <div class="top-nav">
+                    <div class="nav-icon active" id="home-profile-nav">
+                        <img src="assets/home.jpg" alt="Home">
+                    </div>
+                    <div class="nav-icon" id="profile-plus-nav">
+                        <img src="assets/plus.jpg" alt="Plus">
+                    </div>
+                    <div class="nav-icon">
+                        <img src="assets/book.jpg" alt="Book">
+                    </div>
+                    <div class="nav-icon">
+                        <img src="assets/brain.jpg" alt="Brain">
+                    </div>
+                </div>
+
+
+                <div class="profile-header">
+                    <!-- ADDED ID HERE: To change its inner contents dynamically -->
+                    <div class="profile-avatar" id="profile-avatar-container">
+                        <span class="avatar-icon">👤</span>
+                    </div>
+                    <div class="profile-meta">
+                        <h2 id="display-username">[Username]</h2>
+                        <button type="button" class="edit-profile-btn" id="edit-profile-btn">✏️ Edit Profile</button>
+                    </div>
+                </div>
+
+                <!-- Clear and isolated interest input layout wrapper cards -->
+                <div class="info-card unique-profile-card">
+                    <h3>Interested In</h3>
+                    
+                    <!-- Form actions row container holds fields securely -->
+                    <div class="interest-entry-box">
+                        <input type="text" id="direct-interest-input" placeholder="Type a new topic here..." autocomplete="off">
+                        <button type="button" id="add-interest-btn">Add</button>
+                    </div>
+                    
+                    <ul id="interests-list" class="punchy-list"></ul>
+                    
+                    <!-- Decorative striped cat mascot graphic layered independently -->
+                    <div class="card-cat-deco">
+                        <img src="assets/striped-cat.png" alt="Cat Decoration">
+                    </div>
+                </div>
+
+
+                <div class="info-card log-card">
+                    <h3>Log</h3>
+                    <div class="log-entry">
+                        <span class="star-icon">☆</span> 
+                        <span class="log-text">25<sup>th</sup> Sep 2026 - upset cat</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 VIEW 3: Affirmation Screen Frame (Hidden)
+                 ========================================== -->
+            <div id="affirmation-screen" class="view-panel hidden">
+                <!-- Replace your top-nav sections with this clean image structure -->
+                <div class="top-nav">
+                    <div class="nav-icon active" id="home-profile-nav">
+                        <img src="assets/home.jpg" alt="Home">
+                    </div>
+                    <div class="nav-icon" id="profile-plus-nav">
+                        <img src="assets/plus.jpg" alt="Plus">
+                    </div>
+                    <div class="nav-icon">
+                        <img src="assets/book.jpg" alt="Book">
+                    </div>
+                    <div class="nav-icon">
+                        <img src="assets/brain.jpg" alt="Brain">
+                    </div>
+                </div>
+
+
+                <!-- White Card Wrapper Box -->
+                <div class="affirmation-card">
+                    <h2 class="card-title">Add your affirmation:</h2>
+                    
+                    <!-- Interactive Textarea Input Box -->
+                    <textarea id="affirmation-textarea" placeholder="[insert affirmation]"></textarea>
+
+                    <!-- Save Action Pill Button -->
+                    <button type="button" class="save-affirmation-btn" id="save-affirmation-btn">Save</button>
+                </div>
+
+                <!-- Small Siamese Cat Mascot Placement at Top Left of Card -->
+                <div class="siamese-cat-deco">
+                    <img src="assets/siamese-cat.png" alt="Siamese Cat Companion">
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+                 VIEW 4: RESOURCES & SUPPORT SCREEN (Hidden)
+                 ========================================== -->
+            <div id="resources-screen" class="view-panel hidden">
+                
+                <!-- Top Navigation Panel Structure -->
+                <div class="header-container">
+                    <!-- <div class="brand">nekomood</div> -->
+                    <div class="top-nav">
+                        <div class="nav-icon" id="res-profile-nav"><img src="assets/home.jpg" alt="Home"></div>
+                        <div class="nav-icon" id="res-plus-nav"><img src="assets/plus.jpg" alt="Plus"></div>
+                        <div class="nav-icon"><img src="assets/book.jpg" alt="Book"></div>
+                        <div class="nav-icon active"><img src="assets/brain.jpg" alt="Brain"></div>
+                    </div>
+                </div>
+
+                <!-- Pixel Art Chat Bubble Layout -->
+                <div class="pixel-bubble-container">
+                    <div class="pixel-bubble">
+                        <span class="bubble-text">xoxo</span>
+                    </div>
+                </div>
+
+                <!-- Rounded Menu Category Buttons -->
+                <div class="category-menu">
+                    <button type="button" class="menu-item-btn">Mental Health Conditions</button>
+                    <button type="button" class="menu-item-btn">Life and Wellness Topics</button>
+                    <button type="button" class="menu-item-btn">Treatment and Support</button>
+                </div>
+
+            </div> <!-- Close #resources-screen -->
+            
+
+
+
+
+
+
+
+
+            <!-- ==========================================
+                REPAIRED PROFILE DIALOG MODAL (Add this at the bottom of your app-body)
+                ========================================== -->
+            <div id="input-modal" class="hidden" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; justify-content: center; align-items: center; z-index: 10;">
+                <div class="window-container" style="width: 85%; height: auto; background: #fff0f2; padding: 20px; border-radius: 20px; border: 3px solid #333333; box-shadow: none;">
+                    <h3 style="margin-top: 0; text-align: center; font-size: 20px;">Modify Settings</h3>
+                    
+                    <!-- Text update input field -->
+                    <div class="input-group" style="margin-bottom: 12px; display: flex; flex-direction: column;">
+                        <label style="margin-bottom: 4px; font-weight: 500;">Update Name:</label>
+                        <input type="text" id="username-input" style="height: 36px; border: 2px solid #333333; border-radius: 18px; padding: 0 12px; outline: none;">
+                    </div>
+                    
+                    <!-- File uploader input field for image selections -->
+                    <div class="input-group" style="margin-bottom: 20px; display: flex; flex-direction: column;">
+                        <label style="margin-bottom: 4px; font-weight: 500;">Change Profile Picture:</label>
+                        <!-- Standard file prompt type filtered strictly for standard image extensions -->
+                        <input type="file" id="avatar-file-input" accept="image/jpeg, image/jpg, image/png" style="font-size: 14px;">
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button id="save-profile-btn" class="bubble-next-btn" style="flex: 1; height: 38px; font-size: 14px; background-color: #ffd1d6;">Save</button>
+                        <button id="close-modal-btn" class="bubble-next-btn" style="flex: 1; height: 38px; font-size: 14px; background-color: #cccccc;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- Close .app-body -->
+    </div> <!-- Close .window-container -->
+
+    <!-- FIXED: Links to script.js directly -->
+    <script src="script.js"></script>
+</body>
+</html>
