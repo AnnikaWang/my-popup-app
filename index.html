@@ -127,41 +127,62 @@
             <!-- ==========================================
                  VIEW 3: Affirmation Screen Frame (Hidden)
                  ========================================== -->
-            <div id="affirmation-screen" class="view-panel hidden">
+            <div id="affirmation-screen" class="hidden">
                 <!-- Replace your top-nav sections with this clean image structure -->
-                <div class="top-nav">
-                    <div class="nav-icon active" id="home-profile-nav">
-                        <img src="assets/home.jpg" alt="Home">
-                    </div>
-                    <div class="nav-icon active" id="profile-plus-nav">
-                        <img src="assets/plus.jpg" alt="Plus">
-                    </div>
-                    <div class="nav-icon">
-                        <img src="assets/book.jpg" alt="Book">
-                    </div>
-                    <div class="nav-icon">
-                        <img src="assets/brain.jpg" alt="Brain">
+                <div class="header-row">
+                    <h1 class="logo-text" style="margin: 0; font-size: 24px;">nekomood</h1>
+                    
+                    <!-- Navigation Container Group -->
+                    <div class="nav-bar-container">
+                        <div class="nav-icon active" id="home-profile-nav">
+                            <img src="assets/home.jpg" alt="Home">
+                        </div>
+                        <div class="nav-icon active" id="profile-plus-nav">
+                            <img src="assets/plus.jpg" alt="Plus">
+                        </div>
+                        <div class="nav-icon active">
+                            <img src="assets/book.jpg" alt="Book">
+                        </div>
+                        <div class="nav-icon">
+                            <img src="assets/brain.jpg" alt="Brain">
+                        </div>
                     </div>
                 </div>
+                <div id="affirmation-screen" class="hidden">
 
+            <!-- Centered Affirmation Content Card -->
+            <div class="affirmation-card">
+                <!-- Small Siamese Cat Mascot attached safely inside top card content -->
+                <div class="siamese-cat-deco">
+                    <img src="assets/siamese-cat.png" alt="Siamese Cat Companion" style="align-self: flex-start; width: 50px;">
+                </div>
+                <!--<img src="assets/small-cat.png" class="mini-cat-icon" alt="Cat Icon" style="align-self: flex-start; width: 50px;"> -->
+                
+                <h2>Add your affirmation:</h2>
+                
+                <!-- Textarea instead of input lets users type multi-line strings effortlessly -->
+                <textarea class="affirmation-input-box" placeholder="[insert affirmation]"></textarea>
+                
+                <button id="save-affirmation-btn" class="save-btn">Save</button>
+            </div>
 
                 <!-- White Card Wrapper Box -->
-                <div class="affirmation-card">
-                    <h2 class="card-title">Add your affirmation:</h2>
+                <!--<div class="affirmation-card">
+                    <h2 class="card-title">Add your affirmation:</h2> -->
                     
                     <!-- Interactive Textarea Input Box -->
-                    <textarea id="affirmation-textarea" placeholder="[insert affirmation]"></textarea>
+                    <!--<textarea id="affirmation-textarea" placeholder="[insert affirmation]"></textarea> -->
 
                     <!-- Save Action Pill Button -->
-                    <button type="button" class="save-affirmation-btn" id="save-affirmation-btn">Save</button>
-                </div>
+                    <!--<button type="button" class="save-affirmation-btn" id="save-affirmation-btn">Save</button>
+                </div>-->
 
                 <!-- Small Siamese Cat Mascot Placement at Top Left of Card -->
-                <div class="siamese-cat-deco">
+                <!--<div class="siamese-cat-deco">
                     <img src="assets/siamese-cat.png" alt="Siamese Cat Companion">
                 </div>
 
-            </div>
+            </div> -->
 
             <!-- ==========================================
                  VIEW 4: RESOURCES & SUPPORT SCREEN (Hidden)

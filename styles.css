@@ -256,7 +256,7 @@ h2 {
     background-color: #fff0f2; 
 }
 
-.bubble-next-btn {
+.bubble-save-btn {
     width: 150px;
     height: 42px;
     background-color: #ffccd2;
@@ -269,7 +269,7 @@ h2 {
     transition: all 0.2s ease;
 }
 
-.bubble-next-btn:hover {
+.bubble-save-btn:hover {
     background-color: #ffffff;
     border-color: #333333;
 }
@@ -452,7 +452,117 @@ h2 {
 }
 
 /* ==========================================================================
-   7. RESOURCES & SUPPORT SCREEN (FIXES FOR THE UNSTYLED VIEW)
+   7. AFFIRMATIONS SCREEN
+   ========================================================================== */
+   /* Core screen structure - locks layout to window size */
+#affirmation-screen {
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px;
+    background-color: #FFC0CB; /* Your light pink background */
+
+    /* Flexbox centering forces everything to sit inside the window boundaries */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden; /* Force blocks unwanted scrollbars completely */
+}
+
+/* Header row layout framework */
+.header-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Core screen structure */
+#affirmation-screen {
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px;
+    background-color: #FFC0CB; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden; 
+}
+
+/* FIX: Forces the logo and navigation icons to align horizontally */
+.header-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;        /* Forces horizontal layout alignment */
+    justify-content: space-between; /* Pushes brand title left and menu right */
+    align-items: center;        /* Centers items vertically relative to each other */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* FIX: Forces the menu icons to stay side-by-side instead of stacking */
+.nav-bar-container {
+    display: flex;
+    flex-direction: row;        /* Stops vertical stacking */
+    gap: 12px;                  /* Adds uniform spacing between the circular buttons */
+    align-items: center;
+}
+
+/* Main white container card styling */
+.affirmation-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    padding: 25px;
+    box-sizing: border-box;
+    
+    /* Vertical layout handling inside the white card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+    /* Dynamically fills remaining vertical space without expanding out of view */
+    flex-grow: 1; 
+    max-height: calc(100vh - 120px); 
+}
+
+/* Pink text input box area configuration */
+.affirmation-input-box {
+    width: 100%;
+    flex-grow: 1; /* Automatically expands text space to fit remaining card area */
+    min-height: 150px;
+    background-color: #FFB6C1; /* Medium pink textbox background */
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 16px;
+    resize: none; /* Prevents user manually breaking layout sizes */
+    box-sizing: border-box;
+}
+
+/* Save button style */
+.save-btn {
+    background-color: #FFC0CB;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   8. RESOURCES & SUPPORT SCREEN (FIXES FOR THE UNSTYLED VIEW)
    ========================================================================== */
 
 /* Wraps the text banner so it lines up with a slight retro look */
