@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // 1. HOME DASHBOARD ROUTING
     // ==========================================================================
-    const bubbleNextBtn = document.querySelector('.bubble-next-btn');
-    if (bubbleNextBtn) {
-        bubbleNextBtn.addEventListener('click', () => {
+    const bubbleSaveBtn = document.querySelector('.bubble-save-btn');
+    if (bubbleSaveBtn) {
+        bubbleSaveBtn.addEventListener('click', () => {
             switchScreen(profileScreen);
         });
     }
