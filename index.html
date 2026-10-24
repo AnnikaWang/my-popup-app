@@ -125,69 +125,55 @@
             </div>
 
             <!-- ==========================================
-                 VIEW 3: Affirmation Screen Frame (Hidden)
-                 ========================================== -->
-            <div id="affirmation-screen" class="hidden">
-                <!-- Replace your top-nav sections with this clean image structure -->
+                VIEW 3: Affirmation Screen Frame (Hidden)
+                ========================================== -->
+            <div id="affirmation-screen" class="view-panel hidden">
+                
+                <!-- Top Horizontal Header Row Component -->
                 <div class="header-row">
-                    <h1 class="logo-text" style="margin: 0; font-size: 24px;">nekomood</h1>
+                    <h1 class="logo-text">nekomood</h1>
                     
                     <!-- Navigation Container Group -->
                     <div class="nav-bar-container">
-                        <div class="nav-icon active" id="home-profile-nav">
+                        <div class="nav-icon" id="home-profile-nav">
                             <img src="assets/home.jpg" alt="Home">
                         </div>
-                        <div class="nav-icon active" id="profile-plus-nav">
+                        <div class="nav-icon active-nav" id="profile-plus-nav">
                             <img src="assets/plus.jpg" alt="Plus">
                         </div>
-                        <div class="nav-icon active">
+                        <div class="nav-icon">
                             <img src="assets/book.jpg" alt="Book">
                         </div>
                         <div class="nav-icon">
                             <img src="assets/brain.jpg" alt="Brain">
                         </div>
                     </div>
-                </div>
-                <div id="affirmation-screen" class="hidden">
+                </div> <!-- This now correctly wraps both your text and your navigation elements -->
 
-            <!-- Centered Affirmation Content Card -->
-            <div class="affirmation-card">
-                <!-- Small Siamese Cat Mascot attached safely inside top card content -->
-                <div class="siamese-cat-deco">
-                    <img src="assets/siamese-cat.png" alt="Siamese Cat Companion" style="align-self: flex-start; width: 50px;">
-                </div>
-                <!--<img src="assets/small-cat.png" class="mini-cat-icon" alt="Cat Icon" style="align-self: flex-start; width: 50px;"> -->
-                
-                <h2>Add your affirmation:</h2>
-                
-                <!-- Textarea instead of input lets users type multi-line strings effortlessly -->
-                <textarea class="affirmation-input-box" placeholder="[insert affirmation]"></textarea>
-                
-                <button id="save-affirmation-btn" class="save-btn">Save</button>
-            </div>
-
-                <!-- White Card Wrapper Box -->
-                <!--<div class="affirmation-card">
-                    <h2 class="card-title">Add your affirmation:</h2> -->
+                <!-- Centered White Affirmation Content Card -->
+                <div class="affirmation-card">
+                    <!-- Small Siamese Cat Mascot attached safely inside top card content -->
+                    <div class="siamese-cat-deco">
+                        <img src="assets/siamese-cat.png" alt="Siamese Cat Companion">
+                    </div>
                     
-                    <!-- Interactive Textarea Input Box -->
-                    <!--<textarea id="affirmation-textarea" placeholder="[insert affirmation]"></textarea> -->
-
-                    <!-- Save Action Pill Button -->
-                    <!--<button type="button" class="save-affirmation-btn" id="save-affirmation-btn">Save</button>
-                </div>-->
-
-                <!-- Small Siamese Cat Mascot Placement at Top Left of Card -->
-                <!--<div class="siamese-cat-deco">
-                    <img src="assets/siamese-cat.png" alt="Siamese Cat Companion">
+                    <h2>Add your affirmation:</h2>
+                    
+                    <!-- Interactive Multi-line Text Area -->
+                    <textarea class="affirmation-input-box" placeholder="[insert affirmation]"></textarea>
+                    
+                    <!-- Save Action Button -->
+                    <button id="save-affirmation-btn" class="save-btn">Save</button>
                 </div>
 
-            </div> -->
+            </div> <!-- This closing div now cleanly isolates the entire affirmation screen -->
+
+
 
             <!-- ==========================================
                  VIEW 4: RESOURCES & SUPPORT SCREEN (Hidden)
                  ========================================== -->
-            <div id="resources-screen" class="view-panel hidden">
+            <div id="resources-screen" class="hidden">
                 
                 <!-- Top Navigation Panel Structure -->
                 <div class="header-container">
@@ -224,9 +210,9 @@
 
 
 
-            <!-- ==========================================
-                REPAIRED PROFILE DIALOG MODAL (Add this at the bottom of your app-body)
-                ========================================== -->
+            <!-- ==========================================================================
+                REPAIRED PROFILE DIALOG MODAL (INSIDE APP-BODY SIBLING LAYERS)
+                ========================================================================== -->
             <div id="input-modal" class="hidden" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; justify-content: center; align-items: center; z-index: 10;">
                 <div class="window-container" style="width: 85%; height: auto; background: #fff0f2; padding: 20px; border-radius: 20px; border: 3px solid #333333; box-shadow: none;">
                     <h3 style="margin-top: 0; text-align: center; font-size: 20px;">Modify Settings</h3>
@@ -240,16 +226,17 @@
                     <!-- File uploader input field for image selections -->
                     <div class="input-group" style="margin-bottom: 20px; display: flex; flex-direction: column;">
                         <label style="margin-bottom: 4px; font-weight: 500;">Change Profile Picture:</label>
-                        <!-- Standard file prompt type filtered strictly for standard image extensions -->
                         <input type="file" id="avatar-file-input" accept="image/jpeg, image/jpg, image/png" style="font-size: 14px;">
                     </div>
                     
+                    <!-- FIXED: Button classes updated to generic utility buttons to avoid stylesheet collisions -->
                     <div style="display: flex; gap: 10px;">
-                        <button id="save-profile-btn" class="bubble-next-btn" style="flex: 1; height: 38px; font-size: 14px; background-color: #ffd1d6;">Save</button>
-                        <button id="close-modal-btn" class="bubble-next-btn" style="flex: 1; height: 38px; font-size: 14px; background-color: #cccccc;">Cancel</button>
+                        <button id="save-profile-btn" style="flex: 1; height: 38px; font-size: 14px; background-color: #ffd1d6; border: 2px solid #333333; border-radius: 19px; cursor: pointer; font-weight: 500;">Save</button>
+                        <button id="close-modal-btn" style="flex: 1; height: 38px; font-size: 14px; background-color: #cccccc; border: 2px solid #333333; border-radius: 19px; cursor: pointer; font-weight: 500;">Cancel</button>
                     </div>
                 </div>
             </div>
+
 
         </div> <!-- Close .app-body -->
     </div> <!-- Close .window-container -->

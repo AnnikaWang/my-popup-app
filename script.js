@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show exclusively the target screen
         targetScreen.classList.remove('hidden');
     }
+    switchScreen(homeScreen);
 
     // ==========================================================================
     // 1. HOME DASHBOARD ROUTING

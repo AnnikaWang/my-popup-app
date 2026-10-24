@@ -70,7 +70,7 @@ body {
 .app-body {
     background-color: #ffccd2; 
     flex: 1;
-    padding: 20px 24px;
+    padding: 15px 20px; /* Snugger layout padding to maximize space */
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -80,7 +80,7 @@ body {
 .brand {
     font-size: 24px;
     color: #000000;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-weight: 500;
     text-align: left;
 }
@@ -91,7 +91,7 @@ body {
     width: 100%;
     height: 100%; 
     overflow-y: auto; 
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 /* Custom thin scrollbar matching the pink aesthetic */
@@ -113,29 +113,51 @@ body {
 }
 
 h2 {
-    font-size: 22px;
+    font-size: 20px;
     color: #000000;
     text-align: center;
-    margin: 10px 0 20px 0;
+    margin: 5px 0 15px 0;
     font-weight: 500;
 }
+
+/* FORCE HIDE SYSTEM FOR VIEWS ON FIRST BOOT */
+#affirmation-screen,
+#profile-screen,
+#resources-screen {
+    display: none !important;
+}
+
+/* Re-allow your JavaScript switchScreen() logic to override the hide state */
+#home-screen:not(.hidden),
+#affirmation-screen:not(.hidden),
+#profile-screen:not(.hidden),
+#resources-screen:not(.hidden) {
+    display: flex !important;
+}
+
 
 /* ==========================================================================
    4. NAVIGATION BAR HEADER ELEMENT MASKS
    ========================================================================== */
-.header-container {
+/* Unified both top-nav layout rows to handle alignment cleanly */
+.top-nav, .header-row {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row !important;
+    justify-content: flex-end; /* Cleanly aligns menu buttons to the right side */
     align-items: center;
     width: 100%;
-    padding-bottom: 25px;
+    gap: 10px;
+    padding: 0 0 15px 0;
+    margin-left: auto;
+    box-sizing: border-box;
 }
 
-.top-nav {
+/* Forces structural consistency on the nested containers inside view 3 */
+.nav-bar-container {
     display: flex;
+    flex-direction: row !important;
     gap: 10px;
-    margin-left: auto;
-    padding: 0 0 15px 0;
+    align-items: center;
 }
 
 .nav-icon {
@@ -176,7 +198,7 @@ h2 {
 .mood-bubble {
     background-color: #ffffff;
     border: 3px solid #333333;
-    border-radius: 50% 50% 50% 50__ / 40% 40% 60% 60%; /* Organic balloon curve layout */
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; /* Fixed missing code markup */
     width: 100%;
     max-width: 340px;
     padding: 30px 20px;
@@ -290,7 +312,7 @@ h2 {
 }
 
 /* ==========================================================================
-   6. PROFILE SCREENS & INDEPENDENT MASCOT LAYERS (FIXED STYLES)
+   6. PROFILE SCREENS & INDEPENDENT MASCOT LAYERS
    ========================================================================== */
 #profile-screen {
     padding: 5px 0;
@@ -349,13 +371,12 @@ h2 {
     transform: translateY(-1px);
 }
 
-/* White Card Base Container Blocks */
 .info-card {
     background-color: #ffffff;
     border: 3px solid #333333;
     border-radius: 20px;
     padding: 16px 20px;
-    position: relative; /* CRITICAL: Snaps the cat child layer locally */
+    position: relative; 
     width: 100%;
 }
 
@@ -365,200 +386,74 @@ h2 {
     color: #000000;
 }
 
-/* Isolated Horizontal Row for Form Input Elements */
-/* ==========================================================================
-   FIXES FOR INPUT BAR COLLISION BLOCKS
-   ========================================================================== */
-
-/* Main row spacing rules for text boxes and add buttons */
 .interest-entry-box {
     display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 10px !important;
-    width: 100% !important; /* Forces the box layout to fill the card horizontal limits */
-    margin-bottom: 12px;
+    gap: 8px;
 }
 
-#direct-interest-input {
-    flex: 1 !important; /* Spreads the input field wide */
-    height: 40px;
-    border: 2px solid #333333;
+/* ==========================================================================
+   7. AFFIRMATIONS SCREEN CONFIGURATIONS (COMPACT MODE)
+   ========================================================================== */
+.affirmation-card {
+    background-color: #ffffff;
+    border: 3px solid #333333;
     border-radius: 20px;
-    padding: 0 16px;
-    font-size: 14px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex: 1; /* Automatically expands inside the app body */
+    max-height: 290px; /* Clamps vertical growth to preserve window footer boundaries */
+    width: 100%;
+    position: relative;
+}
+
+.affirmation-input-box {
+    width: 100%;
+    height: 100px; /* Shrunk slightly to guarantee button bounds match */
+    background-color: #ffccd2; /* Matches theme panel color fields */
+    border: 3px solid #333333;
+    border-radius: 12px;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    resize: none;
+    box-sizing: border-box;
     outline: none;
 }
 
-#add-interest-btn {
-    width: 55px !important;
-    height: 40px !important;
-    background-color: #ffd1d6;
-    border: 2px solid #333333;
-    border-radius: 50%; /* Forms the neat circular add badge from your image */
-    font-size: 14px;
-    color: #000000;
-    font-weight: 500;
-    cursor: pointer;
-    flex-shrink: 0 !important; /* Prevents the circle shape from getting squeezed flat */
+.siamese-cat-deco {
+    position: absolute;
+    bottom: 12px;
+    left: 15px;
+    width: 55px;
+    z-index: 4;
+    pointer-events: none;
 }
 
-#add-interest-btn:hover {
-    background-color: #333333;
-    color: #ffffff;
-}
-
-/* ABSOLUTE POSITIONING: Removes cat from breaking the input row layout */
-/* 2. Absolute Positioning Layer fixes for the Cat Decoration */
-.card-cat-deco {
-    position: absolute !important;
-    bottom: 6px !important;      /* Snaps the graphic down away from your text inputs */
-    right: 14px !important;     /* Tucks the image neatly onto the inner right padding margin */
-    width: 45px !important;     /* Restricts size scale so it stays compact */
-    height: auto !important;
-    z-index: 1 !important;      /* Placed underneath input field focus click paths */
-    pointer-events: none;       /* Mouse clicks pass straight through to elements beneath */
-}
-
-.card-cat-deco img {
+.siamese-cat-deco img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* Add padding on your bulleted lists so text never hides behind the cat mascot */
-.punchy-list {
-    margin-top: 10px;
-    padding-left: 20px;
-    padding-right: 50px; 
-}
-
-/* History Log Cards */
-.log-card {
-    margin-top: 4px;
-}
-
-.log-entry {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 15px;
-    color: #333333;
-}
-
-.star-icon {
-    font-size: 18px;
-    color: #333333;
-}
-
-/* ==========================================================================
-   7. AFFIRMATIONS SCREEN
-   ========================================================================== */
-   /* Core screen structure - locks layout to window size */
-#affirmation-screen {
-    width: 100%;
-    height: 100vh;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 20px;
-    background-color: #FFC0CB; /* Your light pink background */
-
-    /* Flexbox centering forces everything to sit inside the window boundaries */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden; /* Force blocks unwanted scrollbars completely */
-}
-
-/* Header row layout framework */
-.header-row {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-}
-
-/* Core screen structure */
-#affirmation-screen {
-    width: 100%;
-    height: 100vh;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 20px;
-    background-color: #FFC0CB; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden; 
-}
-
-/* FIX: Forces the logo and navigation icons to align horizontally */
-.header-row {
-    width: 100%;
-    display: flex;
-    flex-direction: row;        /* Forces horizontal layout alignment */
-    justify-content: space-between; /* Pushes brand title left and menu right */
-    align-items: center;        /* Centers items vertically relative to each other */
-    margin-bottom: 20px;
-    box-sizing: border-box;
-}
-
-/* FIX: Forces the menu icons to stay side-by-side instead of stacking */
-.nav-bar-container {
-    display: flex;
-    flex-direction: row;        /* Stops vertical stacking */
-    gap: 12px;                  /* Adds uniform spacing between the circular buttons */
-    align-items: center;
-}
-
-/* Main white container card styling */
-.affirmation-card {
-    width: 100%;
-    max-width: 400px;
-    background-color: #FFFFFF;
-    border-radius: 15px;
-    padding: 25px;
-    box-sizing: border-box;
-    
-    /* Vertical layout handling inside the white card */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    
-    /* Dynamically fills remaining vertical space without expanding out of view */
-    flex-grow: 1; 
-    max-height: calc(100vh - 120px); 
-}
-
-/* Pink text input box area configuration */
-.affirmation-input-box {
-    width: 100%;
-    flex-grow: 1; /* Automatically expands text space to fit remaining card area */
-    min-height: 150px;
-    background-color: #FFB6C1; /* Medium pink textbox background */
-    border: none;
-    border-radius: 10px;
-    padding: 15px;
-    font-family: inherit;
-    font-size: 16px;
-    resize: none; /* Prevents user manually breaking layout sizes */
-    box-sizing: border-box;
-}
-
-/* Save button style */
 .save-btn {
-    background-color: #FFC0CB;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 20px;
+    width: 130px;
+    height: 38px;
+    background-color: #ffd1d6;
+    border: 3px solid #333333;
+    border-radius: 19px;
+    font-size: 15px;
+    color: #000000;
     cursor: pointer;
     font-weight: bold;
+    margin-top: auto; /* Aligns button neatly near the base footer */
+    transition: all 0.15s ease;
+}
+
+.save-btn:hover {
+    background-color: #ffffff;
 }
 
 /* ==========================================================================
