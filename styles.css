@@ -301,6 +301,47 @@ h2 {
     display: block;
 }
 
+/* Update your existing .mood-bubble rule to ensure it handles nested items correctly */
+.mood-bubble {
+    background-color: #ffffff;
+    border: 3px solid #333333;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    width: 100%;
+    max-width: 340px;
+    padding: 25px 30px; /* Increased side padding to compress inner contents safely */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* NEW TARGET RULE: Styles your white card to sit perfectly within the balloon borders */
+.saved-affirmation-view .affirmation-text-box {
+    background-color: #fcfcfc; /* A clean subtle off-white to distinguish from bubble background */
+    border: 2px solid #e0e0e0;  /* A soft outline border matching standard designs */
+    border-radius: 16px;
+    
+    /* FIX: Restricts the card from stretching past the speech bubble border */
+    width: 90%; 
+    max-width: 240px;          /* Hard structural width boundary ensures safety */
+    min-height: 100px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    
+    font-size: 15px;
+    font-weight: 500;
+    color: #333333;
+    text-align: center;
+}
+
+
 /* ==========================================================================
    6. PROFILE SCREENS & INDEPENDENT MASCOT LAYERS (RE-RESTORED ORIGINAL FORMAT)
    ========================================================================== */

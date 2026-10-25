@@ -1,4 +1,4 @@
-const { app, BrowserWindow, screen } = require('electron');
+const { app, BrowserWindow, screen, ipcMain, shell } = require('electron'); // Restored and combined your top imports
 const path = require('path');
 
 let popupWindow;
@@ -8,7 +8,6 @@ function createPopup() {
     const primaryDisplay = screen.getPrimaryDisplay();
     const { width, height } = primaryDisplay.workAreaSize;
 
-    // FIXED: Adjusted to 380x480 to match your HTML/CSS frame size perfectly
     const popupWidth = 380;
     const popupHeight = 480;
 
@@ -24,9 +23,8 @@ function createPopup() {
         type: 'toolbar',          // Tells the OS to treat it as a utility popup panel
         show: false,              // Starts hidden to prevent flash of white screen
         webPreferences: {
-            nodeIntegration: false,
-            contextIsolation: true,
-            preload: path.join(__dirname, 'preload.js')
+            nodeIntegration: true,    // FIXED: Enabled so script.js can use require('electron')
+            contextIsolation: false   // FIXED: Disabled because you do not have a preload.js file
         }
     });
 
@@ -44,11 +42,32 @@ function createPopup() {
     });
 
     // 4. Autohide Behavior (Optional): Hides the popup when clicking anywhere else
-    popupWindow.on('blur', () => {
+    //popupWindow.on('blur', () => {
         popupWindow.hide(); 
-    });
+    //});
 }
 
+// ==========================================================================
+// IPC HANDLERS: INTERCEPT SIGNALS FROM SCRIPT.JS
+// ==========================================================================
+
+/* Event handlers for mac dots */
+ipcMain.on('window-control-close', () => {
+    if (popupWindow) popupWindow.close();
+});
+
+ipcMain.on('window-control-minimize', () => {
+    if (popupWindow) popupWindow.minimize();
+});
+
+/* FIXED: Background external web browser redirect controller channel */
+ipcMain.on('open-external-url', (event, url) => {
+    if (url) {
+        shell.openExternal(url); // Launches default system web browser tab cleanly in the background
+    }
+});
+
+// Run application loops
 app.whenReady().then(() => {
     createPopup();
 
@@ -59,16 +78,4 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
-});
-
-/* event handlers for mac dots */
-const { ipcMain } = require('electron'); // Update your top require block to include ipcMain
-
-// Listen for secure UI actions sent up from your preload layer
-ipcMain.on('window-control-close', () => {
-    if (popupWindow) popupWindow.close();
-});
-
-ipcMain.on('window-control-minimize', () => {
-    if (popupWindow) popupWindow.minimize();
 });

@@ -24,19 +24,18 @@
             <div class="brand">nekomood</div>
 
             <!-- ==========================================
-                 VIEW 1: Home App Frame (Starts Active)
-                 ========================================== -->
+                VIEW 1: Home App Frame (Starts Active)
+                ========================================== -->
             <div id="home-screen" class="view-panel">
-                <!-- Replace your top-nav sections with this clean image structure -->
+                <!-- Top Navigation Row -->
                 <div class="top-nav">
-                    <!-- Update the home icon wrapper on EVERY screen to include the class: nav-home-btn -->
-                    <div class="nav-icon nav-home-btn">
+                    <div class="nav-icon active" id="home-profile-nav">
                         <img src="assets/home.jpg" alt="Home">
                     </div>
-                    <div class="nav-icon active" id="profile-plus-nav">
+                    <div class="nav-icon" id="profile-plus-nav">
                         <img src="assets/plus.jpg" alt="Plus">
                     </div>
-                    <div class="nav-icon active">
+                    <div class="nav-icon">
                         <img src="assets/book.jpg" alt="Book">
                     </div>
                     <div class="nav-icon">
@@ -44,26 +43,47 @@
                     </div>
                 </div>
 
-                <div class="mood-bubble">
-                    <h2 class="mood-title">Mood Scale</h2>
-                    <p class="mood-subtitle">What meme are you feeling today?</p>
-                    
-                    <div class="meme-grid">
-                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="happy"><img src="assets/happy.jpg" alt="Happy"></div>
-                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="stressed"><img src="assets/dizzy.jpg" alt="Dizzy"></div>
-                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="angry"><img src="assets/angry.jpg" alt="Angry"></div>
-                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="sad"><img src="assets/crying.jpg" alt="Crying"></div>
-                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="burnout"><img src="assets/fire.jpg" alt="Fire"></div>
+                <!-- SUB-VIEW A: The Initial Mood Picker Input Frame -->
+                <div class="mood-selection-view">
+                    <div class="mood-bubble">
+                        <h2 class="mood-title">Mood Scale</h2>
+                        <p class="mood-subtitle">What meme are you feeling today?</p>
+                        
+                        <div class="meme-grid">
+                            <div class="meme-box" onclick="selectMeme(this)" data-meaning="happy"><img src="assets/happy.jpg" alt="Happy"></div>
+                            <div class="meme-box" onclick="selectMeme(this)" data-meaning="dizzy"><img src="assets/dizzy.jpg" alt="Dizzy"></div>
+                            <div class="meme-box" onclick="selectMeme(this)" data-meaning="angry"><img src="assets/angry.jpg" alt="Angry"></div>
+                            <div class="meme-box" onclick="selectMeme(this)" data-meaning="crying"><img src="assets/crying.jpg" alt="Crying"></div>
+                            <div class="meme-box" onclick="selectMeme(this)" data-meaning="burnout"><img src="assets/fire.jpg" alt="Fire"></div>
+                        </div>
+
+                        <button type="button" class="bubble-save-btn" id="bubble-save-btn">Save</button>
                     </div>
 
-                    <button type="button" class="bubble-save-btn" id="bubble-save-btn">Save</button>
+                    <div class="cat-companion">
+                        <img src="assets/black-cat.png" alt="Nekomood Cat">
+                    </div>
                 </div>
 
-                <div class="cat-companion">
-                    <img src="assets/black-cat.png" alt="Nekomood Cat">
+                <!-- NEW SUB-VIEW B: Daily Affirmation Response Display (Starts Hidden) -->
+                <div class="saved-affirmation-view hidden" style="width: 100%; display: flex; flex-direction: column; align-items: center;" >
+                    <div class="mood-bubble">
+                        <h2 class="mood-title" style="font-family: inherit; font-weight: normal; margin-bottom: 5px;">Daily Affirmation:</h2>
+                        
+                        <!-- White layout card box for your inner text content selection -->
+                        <div class="affirmation-text-box">
+                            "I am free to make mistakes"
+                        </div>
+                    </div>
+
+                    <!-- The black companion kitten stays right at the speech bubble tail context -->
+                    <div class="cat-companion">
+                        <img src="assets/black-cat.png" alt="Nekomood Cat">
+                    </div>
                 </div>
 
             </div>
+
 
             <!-- ==========================================
                  VIEW 2: Profile Dashboard App Frame (Hidden)
@@ -195,11 +215,11 @@
                     </div>
                 </div>
 
-                <!-- Rounded Menu Category Buttons -->
+                <!-- Rounded Menu Category Buttons inside #resources-screen -->
                 <div class="category-menu">
-                    <button type="button" class="menu-item-btn">Mental Health Conditions</button>
-                    <button type="button" class="menu-item-btn">Life and Wellness Topics</button>
-                    <button type="button" class="menu-item-btn">Treatment and Support</button>
+                    <button type="button" class="menu-item-btn external-link" data-url="https://www.nimh.nih.gov">Mental Health Conditions</button>
+                    <button type="button" class="menu-item-btn external-link" data-url="https://www.nih.gov/health-information/your-healthiest-self-wellness-toolkits">Life and Wellness Topics</button>
+                    <button type="button" class="menu-item-btn external-link" data-url="https://www.psychiatry.org/patients-families">Treatment and Support</button>
                 </div>
 
             </div> <!-- Close #resources-screen --> 
