@@ -111,6 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+        // Add this right beneath your existing homeProfileNavBtn logic block inside Section 1
+    const bubbleProfileRedirectBtn = document.getElementById('bubble-profile-redirect-btn');
+    if (bubbleProfileRedirectBtn && profileScreen) {
+        bubbleProfileRedirectBtn.addEventListener('click', () => {
+            switchScreen(profileScreen); // Seamlessly transitions to the profile logs panel
+            
+            // Synchronize active highlights across your main top menu icons
+            document.querySelectorAll('.nav-icon').forEach(icon => icon.classList.remove('active', 'active-nav'));
+            const homeProfileNav = document.getElementById('home-profile-nav');
+            if (homeProfileNav) homeProfileNav.classList.add('active');
+        });
+    }
+
 
     // ==========================================================================
     // 2. PROFILE EDITOR MODAL SETUP

@@ -65,24 +65,26 @@
                     </div>
                 </div>
 
-                <!-- NEW SUB-VIEW B: Daily Affirmation Response Display (Starts Hidden) -->
-                <div class="saved-affirmation-view hidden" style="width: 100%; display: flex; flex-direction: column; align-items: center;" >
-                    <div class="mood-bubble">
-                        <h2 class="mood-title" style="font-family: inherit; font-weight: normal; margin-bottom: 5px;">Daily Affirmation:</h2>
-                        
-                        <!-- White layout card box for your inner text content selection -->
-                        <div class="affirmation-text-box">
-                            "I am free to make mistakes"
+                    <!-- NEW SUB-VIEW B: Daily Affirmation Response Display (Updated) -->
+                    <div class="saved-affirmation-view hidden">
+                        <div class="mood-bubble">
+                            <h2 class="mood-title" style="font-family: inherit; font-weight: normal; margin: 0 0 15px 0; font-size: 24px;">Daily Affirmation:</h2>
+                            
+                            <!-- Direct typography display replaces the old inner white card structure -->
+                            <p id="home-affirmation-display" style="font-size: 18px; line-height: 1.4; margin: 0 0 20px 0; font-weight: normal; max-width: 85%; word-wrap: break-word;">
+                                “I am free to make mistakes”
+                            </p>
+
+                            <!-- Interactive navigation pill button centered right inside the balloon -->
+                            <button type="button" class="go-to-profile-btn" id="bubble-profile-redirect-btn">Go to profile</button>
+                        </div>
+
+                        <div class="cat-companion">
+                            <img src="assets/black-cat.png" alt="Nekomood Cat">
                         </div>
                     </div>
 
-                    <!-- The black companion kitten stays right at the speech bubble tail context -->
-                    <div class="cat-companion">
-                        <img src="assets/black-cat.png" alt="Nekomood Cat">
-                    </div>
-                </div>
-
-            </div>
+            </div> <!-- closes #home-screen -->
 
 
             <!-- ==========================================

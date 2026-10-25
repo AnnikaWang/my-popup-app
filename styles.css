@@ -199,15 +199,16 @@ h2 {
 }
 
 /* Speech Bubble Tail pseudo-elements */
+/* Adjust tail tracking constraints so it anchors nicely beneath the rectangle */
 .mood-bubble::after {
     content: '';
     position: absolute;
-    bottom: -20px;
-    left: 60px;
+    bottom: -19px;
+    left: 70px;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 25px 20px 0 0;
+    border-width: 20px 15px 0 0;
     border-color: #ffffff transparent transparent transparent;
     z-index: 2;
 }
@@ -215,12 +216,12 @@ h2 {
 .mood-bubble::before {
     content: '';
     position: absolute;
-    bottom: -24px;
-    left: 58px;
+    bottom: -23px;
+    left: 68px;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 27px 23px 0 0;
+    border-width: 22px 18px 0 0;
     border-color: #333333 transparent transparent transparent;
     z-index: 1;
 }
@@ -305,10 +306,14 @@ h2 {
 .mood-bubble {
     background-color: #ffffff;
     border: 3px solid #333333;
-    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    
+    /* FIX: Standard pixel rounding converts the oval into a rounded rectangle */
+    border-radius: 30px; 
+    
     width: 100%;
-    max-width: 340px;
-    padding: 25px 30px; /* Increased side padding to compress inner contents safely */
+    max-width: 320px;          /* Slightly narrowed to prevent edge clipping */
+    padding: 25px 20px;        /* Safe internal spacing for text/buttons */
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -338,6 +343,33 @@ h2 {
     font-size: 15px;
     font-weight: 500;
     color: #333333;
+    text-align: center;
+}
+
+/* Styled navigation pill matching your light pink design accent perfectly */
+.go-to-profile-btn {
+    background-color: #ffb6c1; /* Soft pink button fill */
+    border: none;
+    border-radius: 20px;       /* Gives it that perfect oval pill shape */
+    padding: 8px 24px;
+    font-size: 14px;
+    color: #000000;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.15s ease;
+}
+
+.go-to-profile-btn:hover {
+    background-color: #ffd1d6; /* Slightly brighter highlight shift on mouse hover */
+}
+
+#home-affirmation-display {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0 0 15px 0;
+    font-weight: normal;
+    max-width: 90%;
+    word-wrap: break-word;
     text-align: center;
 }
 
