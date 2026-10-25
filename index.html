@@ -29,7 +29,8 @@
             <div id="home-screen" class="view-panel">
                 <!-- Replace your top-nav sections with this clean image structure -->
                 <div class="top-nav">
-                    <div class="nav-icon active" id="home-profile-nav">
+                    <!-- Update the home icon wrapper on EVERY screen to include the class: nav-home-btn -->
+                    <div class="nav-icon nav-home-btn">
                         <img src="assets/home.jpg" alt="Home">
                     </div>
                     <div class="nav-icon active" id="profile-plus-nav">
@@ -48,11 +49,11 @@
                     <p class="mood-subtitle">What meme are you feeling today?</p>
                     
                     <div class="meme-grid">
-                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/happy.jpg" alt="Happy"></div>
-                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/dizzy.jpg" alt="Dizzy"></div>
-                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/angry.jpg" alt="Angry"></div>
-                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/crying.jpg" alt="Crying"></div>
-                        <div class="meme-box" onclick="selectMeme(this)"><img src="assets/fire.jpg" alt="Fire"></div>
+                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="happy"><img src="assets/happy.jpg" alt="Happy"></div>
+                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="stressed"><img src="assets/dizzy.jpg" alt="Dizzy"></div>
+                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="angry"><img src="assets/angry.jpg" alt="Angry"></div>
+                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="sad"><img src="assets/crying.jpg" alt="Crying"></div>
+                        <div class="meme-box" onclick="selectMeme(this)" data-meaning="burnout"><img src="assets/fire.jpg" alt="Fire"></div>
                     </div>
 
                     <button type="button" class="bubble-save-btn" id="bubble-save-btn">Save</button>
@@ -70,18 +71,13 @@
             <div id="profile-screen" class="view-panel hidden">
                 <!-- Replace your top-nav sections with this clean image structure -->
                 <div class="top-nav">
-                    <div class="nav-icon active" id="home-profile-nav">
+                    <!-- Update the home icon wrapper on EVERY screen to include the class: nav-home-btn -->
+                    <div class="nav-icon nav-home-btn">
                         <img src="assets/home.jpg" alt="Home">
                     </div>
-                    <div class="nav-icon active" id="profile-plus-nav">
-                        <img src="assets/plus.jpg" alt="Plus">
-                    </div>
-                    <div class="nav-icon">
-                        <img src="assets/book.jpg" alt="Book">
-                    </div>
-                    <div class="nav-icon">
-                        <img src="assets/brain.jpg" alt="Brain">
-                    </div>
+                    <div class="nav-icon" id="profile-plus-nav"><img src="assets/plus.jpg" alt="Plus"></div>
+                    <div><img src="assets/book.jpg" alt="Book" class="nav-icon"></div>
+                    <div><img src="assets/brain.jpg" alt="Brain" class="nav-icon"></div>
                 </div>
 
 
@@ -95,7 +91,7 @@
                         <button type="button" class="edit-profile-btn" id="edit-profile-btn">✏️ Edit Profile</button>
                     </div>
                 </div>
-
+                    
                 <!-- Clear and isolated interest input layout wrapper cards -->
                 <div class="info-card unique-profile-card">
                     <h3>Interested In</h3>
@@ -106,7 +102,7 @@
                         <button type="button" id="add-interest-btn">Add</button>
                     </div>
                     
-                    <ul id="interests-list" class="punchy-list"></ul>
+                    <ul id="interests-list" class="punchy-list" style="margin: 0; padding-left: 20px; text-align: left;"></ul>
                     
                     <!-- Decorative striped cat mascot graphic layered independently -->
                     <div class="card-cat-deco">
@@ -117,25 +113,24 @@
 
                 <div class="info-card log-card">
                     <h3>Log</h3>
-                    <div class="log-entry">
-                        <span class="star-icon">☆</span> 
-                        <span class="log-text">25<sup>th</sup> Sep 2026 - upset cat</span>
+                    <!-- The JavaScript script targets this ID below to add new lines dynamically -->
+                    <div id="log-container" style="display: flex; flex-direction: column; gap: 8px;">
+                        <div class="log-entry"></div>
                     </div>
                 </div>
-            </div>
+
+            </div> <!-- Close #profile-screen --> 
 
             <!-- ==========================================
                 VIEW 3: Affirmation Screen Frame (Hidden)
                 ========================================== -->
             <div id="affirmation-screen" class="view-panel hidden">
                 
-                <!-- Top Horizontal Header Row Component -->
-                <div class="header-row">
-                    <h1 class="logo-text">nekomood</h1>
-                    
-                    <!-- Navigation Container Group -->
+                <!-- CHANGED: Unique class name isolates this navbar from all other views -->
+                <div class="affirmation-nav">
                     <div class="nav-bar-container">
-                        <div class="nav-icon" id="home-profile-nav">
+                        <!-- Update the home icon wrapper on EVERY screen to include the class: nav-home-btn -->
+                        <div class="nav-icon nav-home-btn">
                             <img src="assets/home.jpg" alt="Home">
                         </div>
                         <div class="nav-icon active-nav" id="profile-plus-nav">
@@ -148,41 +143,48 @@
                             <img src="assets/brain.jpg" alt="Brain">
                         </div>
                     </div>
-                </div> <!-- This now correctly wraps both your text and your navigation elements -->
+                </div>
 
                 <!-- Centered White Affirmation Content Card -->
                 <div class="affirmation-card">
-                    <!-- Small Siamese Cat Mascot attached safely inside top card content -->
                     <div class="siamese-cat-deco">
                         <img src="assets/siamese-cat.png" alt="Siamese Cat Companion">
                     </div>
                     
                     <h2>Add your affirmation:</h2>
-                    
-                    <!-- Interactive Multi-line Text Area -->
                     <textarea class="affirmation-input-box" placeholder="[insert affirmation]"></textarea>
-                    
-                    <!-- Save Action Button -->
                     <button id="save-affirmation-btn" class="save-btn">Save</button>
                 </div>
 
-            </div> <!-- This closing div now cleanly isolates the entire affirmation screen -->
+            </div>
 
 
 
             <!-- ==========================================
-                 VIEW 4: RESOURCES & SUPPORT SCREEN (Hidden)
-                 ========================================== -->
-            <div id="resources-screen" class="hidden">
+                VIEW 4: RESOURCES & SUPPORT SCREEN
+                ========================================== -->
+            <div id="resources-screen" class="view-panel hidden">
                 
                 <!-- Top Navigation Panel Structure -->
-                <div class="header-container">
-                    <!-- <div class="brand">nekomood</div> -->
+                <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding-bottom: 15px;">
+                    <!-- Left empty placeholder pushes navbar menu cleanly to the right side -->
+                    <div></div>
+                    
                     <div class="top-nav">
-                        <div class="nav-icon active" id="res-profile-nav"><img src="assets/home.jpg" alt="Home"></div>
-                        <div class="nav-icon active" id="res-plus-nav"><img src="assets/plus.jpg" alt="Plus"></div>
-                        <div class="nav-icon active"><img src="assets/book.jpg" alt="Book"></div>
-                        <div class="nav-icon active"><img src="assets/brain.jpg" alt="Brain"></div>
+                        <!-- FIXED: Stripped duplicate active states so only the Book icon shines -->
+                        <!-- Update the home icon wrapper on EVERY screen to include the class: nav-home-btn -->
+                        <div class="nav-icon nav-home-btn">
+                            <img src="assets/home.jpg" alt="Home">
+                        </div>
+                        <div class="nav-icon" id="res-plus-nav">
+                            <img src="assets/plus.jpg" alt="Plus">
+                        </div>
+                        <div class="nav-icon active">
+                            <img src="assets/book.jpg" alt="Book">
+                        </div>
+                        <div class="nav-icon">
+                            <img src="assets/brain.jpg" alt="Brain">
+                        </div>
                     </div>
                 </div>
 
@@ -200,7 +202,8 @@
                     <button type="button" class="menu-item-btn">Treatment and Support</button>
                 </div>
 
-            </div> <!-- Close #resources-screen -->
+            </div> <!-- Close #resources-screen --> 
+
             
 
 

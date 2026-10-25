@@ -26,21 +26,74 @@ document.addEventListener('DOMContentLoaded', () => {
     switchScreen(homeScreen);
 
     // ==========================================================================
-    // 1. HOME DASHBOARD ROUTING
+    // 1. HOME DASHBOARD ROUTING (UPDATED WITH DYNAMIC DATA LOG LOGIC)
     // ==========================================================================
-    const bubbleSaveBtn = document.querySelector('.bubble-save-btn');
+    const bubbleSaveBtn = document.getElementById('bubble-save-btn') || document.querySelector('.bubble-save-btn');
+    
     if (bubbleSaveBtn) {
         bubbleSaveBtn.addEventListener('click', () => {
-            switchScreen(profileScreen);
+            // 1. Locate the currently selected cat mascot box element block
+            const selectedMemeBox = document.querySelector('.meme-box.selected');
+            const logContainer = document.getElementById('log-container');
+            
+            if (!selectedMemeBox) {
+                alert("Please click and select a meme cat icon first before saving!");
+                return;
+            }
+
+            // 2. Fetch the corresponding custom meaning text description
+            const catMeaning = selectedMemeBox.getAttribute('data-meaning') || "unknown";
+
+            // 3. Generate dynamic timestamp dates matching your exact design requirements
+            const today = new Date();
+            const day = today.getDate();
+            const year = today.getFullYear();
+            
+            // Month abbreviation array dictionary mapping
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const monthText = months[today.getMonth()];
+
+            // Calculate standard ordinal indicator suffixes (st, nd, rd, th)
+            let suffix = "th";
+            if (day === 1 || day === 21 || day === 31) suffix = "st";
+            else if (day === 2 || day === 22) suffix = "nd";
+            else if (day === 3 || day === 23) suffix = "rd";
+
+            // 4. Construct the structural layout with the cute star bullet point
+            const newLogEntry = document.createElement('div');
+            newLogEntry.className = 'log-entry';
+            newLogEntry.style.display = 'flex';
+            newLogEntry.style.gap = '8px';
+            newLogEntry.style.alignItems = 'baseline';
+            
+            // Builds your string text parameter match: ☆ Xth Month Year - 'meaning' cat
+            newLogEntry.innerHTML = `
+                <span class="star-icon">☆</span> 
+                <span class="log-text">${day}<sup>${suffix}</sup> ${monthText} ${year} - '${catMeaning}' cat</span>
+            `;
+
+            // 5. Inject the newly generated node directly to your Profile Log block
+            if (logContainer) {
+                logContainer.appendChild(newLogEntry);
+            }
+
+            // 6. Transition cleanly to the profile dashboard view panel card
+            if (profileScreen) {
+                switchScreen(profileScreen);
+            }
         });
     }
 
+    // RETAINED: Keeps your manual nav icons routing to the profile screen active
     const homeProfileNavBtn = document.getElementById('home-profile-nav');
     if (homeProfileNavBtn) {
         homeProfileNavBtn.addEventListener('click', () => {
-            switchScreen(profileScreen);
+            if (profileScreen) {
+                switchScreen(profileScreen);
+            }
         });
     }
+
 
     // ==========================================================================
     // 2. PROFILE EDITOR MODAL SETUP
@@ -168,6 +221,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+        // ==========================================================================
+        // 7. GLOBAL HOME NAVIGATION ROUTING (GLOBAL HOME ICON LOOKUP)
+        // ==========================================================================
+        // Finds every home icon button instance across all hidden and visible views
+        const globalHomeButtons = document.querySelectorAll('.nav-home-btn, .nav-icon img[src*="home.jpg"]');
+        
+        if (globalHomeButtons.length > 0 && homeScreen) {
+            globalHomeButtons.forEach(button => {
+                // Target the parent wrapper node to ensure safe, clean click bounds
+                const parentIconWrapper = button.classList.contains('nav-icon') ? button : button.closest('.nav-icon');
+                
+                if (parentIconWrapper) {
+                    parentIconWrapper.style.cursor = 'pointer';
+                    
+                    parentIconWrapper.addEventListener('click', () => {
+                        // 1. Instantly drop all views and switch cleanly back to the dashboard 
+                        switchScreen(homeScreen);
+                        
+                        // 2. Synchronize navigation highlight ring mechanics
+                        document.querySelectorAll('.nav-icon').forEach(icon => icon.classList.remove('active', 'active-nav'));
+                        
+                        // Find the home icon inside the target home screen navigation bar and set it active
+                        const primaryHomeIcon = homeScreen.querySelector('.top-nav .nav-icon');
+                        if (primaryHomeIcon) {
+                            primaryHomeIcon.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+
 });
 
 // Global layout utility configurations

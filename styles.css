@@ -137,27 +137,17 @@ h2 {
 
 
 /* ==========================================================================
-   4. NAVIGATION BAR HEADER ELEMENT MASKS
+   4. NAVIGATION BAR HEADER ELEMENT MASKS (RESTORED TO ORIGINAL FORMAT)
    ========================================================================== */
-/* Unified both top-nav layout rows to handle alignment cleanly */
-.top-nav, .header-row {
-    display: flex;
+.top-nav {
+    display: flex !important;
     flex-direction: row !important;
-    justify-content: flex-end; /* Cleanly aligns menu buttons to the right side */
+    justify-content: flex-end;
     align-items: center;
+    gap: 10px;
     width: 100%;
-    gap: 10px;
     padding: 0 0 15px 0;
-    margin-left: auto;
     box-sizing: border-box;
-}
-
-/* Forces structural consistency on the nested containers inside view 3 */
-.nav-bar-container {
-    display: flex;
-    flex-direction: row !important;
-    gap: 10px;
-    align-items: center;
 }
 
 .nav-icon {
@@ -312,7 +302,7 @@ h2 {
 }
 
 /* ==========================================================================
-   6. PROFILE SCREENS & INDEPENDENT MASCOT LAYERS
+   6. PROFILE SCREENS & INDEPENDENT MASCOT LAYERS (RE-RESTORED ORIGINAL FORMAT)
    ========================================================================== */
 #profile-screen {
     padding: 5px 0;
@@ -338,6 +328,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .avatar-icon {
@@ -353,47 +344,109 @@ h2 {
     text-align: left;
 }
 
-.edit-profile-btn {
-    background-color: #ffffff;
-    border: 2px solid #333333;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 14px;
-    color: #000000;
-    cursor: pointer;
-    font-weight: 500;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: all 0.15s ease;
-}
-
-.edit-profile-btn:hover {
-    background-color: #fff0f2;
-    transform: translateY(-1px);
-}
-
+/* RESTORED: The explicit white card box containers */
 .info-card {
     background-color: #ffffff;
     border: 3px solid #333333;
-    border-radius: 20px;
-    padding: 16px 20px;
-    position: relative; 
+    border-radius: 24px;
+    padding: 20px;
+    position: relative !important; /* Anchor point for your striped cat illustration */
     width: 100%;
+    box-sizing: border-box;
 }
 
 .info-card h3 {
     margin: 0 0 12px 0;
     font-size: 18px;
     color: #000000;
+    text-align: left;
 }
 
 .interest-entry-box {
     display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
     gap: 8px;
+    width: 100%;
+    max-width: calc(100% - 45 px);
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+/* Fixed input sizes to fit within white cards cleanly */
+#direct-interest-input {
+    flex: 1 !important;
+    min-width: 0;
+    height: 38px;
+    background-color: #ffffff;
+    border: 3px solid #333333;
+    border-radius: 12px;
+    padding: 0 10px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#add-interest-btn {
+    height: 38px;
+    background-color: #ffffff;
+    color: #000000;
+    border: 3px solid #333333;
+    border-radius: 12px;
+    padding: 0 14px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.card-cat-deco {
+    position: absolute !important;
+    bottom: 12px;
+    right: 15px;
+    width: 42px; /* Safely clamps the cat mascot's width */
+    height: auto;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.card-cat-deco img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.log-entry {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    font-size: 15px;
+    color: #000000;
+    margin-top: 5px;
 }
 
 /* ==========================================================================
-   7. AFFIRMATIONS SCREEN CONFIGURATIONS (COMPACT MODE)
+   7. AFFIRMATIONS SCREEN CONFIGURATIONS (TOTALLY ISOLATED SPECIFICS)
    ========================================================================== */
+/* Custom independent navigation rule exclusively for view 3 */
+.affirmation-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end; 
+    align-items: center;
+    width: 100%;
+    padding: 0 0 15px 0;
+    box-sizing: border-box;
+}
+
+.affirmation-nav .nav-bar-container {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px;
+    align-items: center;
+}
+
 .affirmation-card {
     background-color: #ffffff;
     border: 3px solid #333333;
@@ -403,16 +456,16 @@ h2 {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    flex: 1; /* Automatically expands inside the app body */
-    max-height: 290px; /* Clamps vertical growth to preserve window footer boundaries */
+    flex: 1; 
+    max-height: 280px; 
     width: 100%;
     position: relative;
 }
 
 .affirmation-input-box {
     width: 100%;
-    height: 100px; /* Shrunk slightly to guarantee button bounds match */
-    background-color: #ffccd2; /* Matches theme panel color fields */
+    height: 100px; 
+    background-color: #ffccd2; 
     border: 3px solid #333333;
     border-radius: 12px;
     padding: 12px;
@@ -448,12 +501,7 @@ h2 {
     color: #000000;
     cursor: pointer;
     font-weight: bold;
-    margin-top: auto; /* Aligns button neatly near the base footer */
-    transition: all 0.15s ease;
-}
-
-.save-btn:hover {
-    background-color: #ffffff;
+    margin-top: auto; 
 }
 
 /* ==========================================================================
