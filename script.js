@@ -1,3 +1,19 @@
+ // An array holding 12 unique, therapeutic affirmations
+    const affirmationsList = [
+        "I am free to make mistakes",
+        "My imperfections are what make me human",
+        "I am capable of handling whatever comes my way",
+        "It is okay to take things one step at a time",
+        "I am proud of how far I have come already",
+        "My feelings are valid, and it is okay to rest",
+        "I am gentle with myself and my progress",
+        "I have the strength to create a beautiful day",
+        "Nobody is perfect all the time",
+        "I am resilient, patient, and continually adapting",
+        "It is okay to have bad days", 
+        "My mistakes do not define my worth"
+    ];
+
 document.addEventListener('DOMContentLoaded', () => {
     // Main View Containers
     const homeScreen = document.getElementById('home-screen');
@@ -49,22 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // 1. HOME DASHBOARD ROUTING (UPDATED WITH DYNAMIC DATA LOG & RANDOM QUOTE)
     // ==========================================================================
-    
-    // An array holding 10 unique, therapeutic affirmations
-    const affirmationsList = [
-        "I am free to make mistakes",
-        "My imperfections are what make me human",
-        "I am capable of handling whatever comes my way",
-        "It is okay to take things one step at a time",
-        "I am proud of how far I have come already",
-        "My feelings are valid, and it is okay to rest",
-        "I am gentle with myself and my progress",
-        "I have the strength to create a beautiful day",
-        "Nobody is perfect all the time",
-        "I am resilient, patient, and continually adapting",
-        "It is okay to have bad days", 
-        "My mistakes do not define my worth"
-    ];
 
     const bubbleSaveBtn = document.getElementById('bubble-save-btn') || document.querySelector('.bubble-save-btn');
     
@@ -306,6 +306,41 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // ==========================================================================
+    // 9. CUSTOM USER AFFIRMATION ACCUMULATOR INPUT CONTROLLER
+    // ==========================================================================
+    const saveAffirmationBtn = document.getElementById('save-affirmation-btn');
+    const customAffirmationInput = document.getElementById('custom-affirmation-input');
+
+    if (saveAffirmationBtn && customAffirmationInput) {
+        saveAffirmationBtn.addEventListener('click', () => {
+            const userPhrase = customAffirmationInput.value.trim();
+
+            // Safety check: Blocks blank or accidental submissions
+            if (userPhrase === "" || userPhrase === "[insert affirmation]") {
+                alert("Please type out a custom phrase before saving!");
+                return;
+            }
+
+            // 1. Core Injection: Adds the new string straight into the pool array
+            affirmationsList.push(userPhrase);
+            console.log(`Custom affirmation injected! Total pool size is now: ${affirmationsList.length}`);
+
+            // 2. Interface Reset: Clears out the entry canvas field text area
+            customAffirmationInput.value = "";
+
+            // 3. User Feedback: Quick alert notification confirmation screen toggle
+            alert("Your custom affirmation was successfully added to the daily rotation pool!");
+
+            // 4. Safe Return Transition Routing: Bounces the user cleanly back to the home view panel
+            if (homeScreen) {
+                switchScreen(homeScreen);
+            }
+        });
+    }
+
+
 }); // FIXED: Cleanly seals the DOMContentLoaded main loop block wrapper
 
 // ==========================================================================
