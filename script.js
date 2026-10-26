@@ -47,8 +47,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // 1. HOME DASHBOARD ROUTING (UPDATED WITH IN-PLACE AFFIRMATION TOGGLING)
+    // 1. HOME DASHBOARD ROUTING (UPDATED WITH DYNAMIC DATA LOG & RANDOM QUOTE)
     // ==========================================================================
+    
+    // An array holding 10 unique, therapeutic affirmations
+    const affirmationsList = [
+        "I am free to make mistakes",
+        "My imperfections are what make me human",
+        "I am capable of handling whatever comes my way",
+        "It is okay to take things one step at a time",
+        "I am proud of how far I have come already",
+        "My feelings are valid, and it is okay to rest",
+        "I am gentle with myself and my progress",
+        "I have the strength to create a beautiful day",
+        "Nobody is perfect all the time",
+        "I am resilient, patient, and continually adapting",
+        "It is okay to have bad days", 
+        "My mistakes do not define my worth"
+    ];
+
     const bubbleSaveBtn = document.getElementById('bubble-save-btn') || document.querySelector('.bubble-save-btn');
     
     if (bubbleSaveBtn) {
@@ -61,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // 1. PROFILE LOG GENERATION (Keeps your log functionality active behind the scenes)
+            // 1. DATA LOG GENERATION (Profile Log Updates)
             const catMeaning = selectedMemeBox.getAttribute('data-meaning') || "unknown";
             const today = new Date();
             const day = today.getDate();
@@ -89,19 +106,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 logContainer.appendChild(newLogEntry);
             }
 
-            // 2. IN-PLACE HOME SCREEN LAYOUT SWITCH
+            // 2. RANDOM AFFIRMATION PICKER
+            const displayElement = document.getElementById('home-affirmation-display');
+            if (displayElement) {
+                // Calculate a random integer index from 0 up to 9
+                const randomIndex = Math.floor(Math.random() * affirmationsList.length);
+                const randomChoice = affirmationsList[randomIndex];
+                
+                // Inject the chosen phrase wrapped inside stylized typographical quotes
+                displayElement.textContent = `“${randomChoice}”`;
+            }
+
+            // 3. IN-PLACE HOME SCREEN LAYOUT SWITCH
             const inputView = document.querySelector('.mood-selection-view');
             const resultView = document.querySelector('.saved-affirmation-view');
             
             if (inputView && resultView) {
-                inputView.classList.add('hidden');          // Hides the meme grid & save button
-                resultView.classList.remove('hidden');       // Reveals your new white affirmation block text card!
-                console.log("Home screen sub-view appearance updated cleanly.");
+                inputView.classList.add('hidden');
+                resultView.classList.remove('hidden');
+                console.log("Home screen updated with a random affirmation card.");
             }
         });
     }
 
-    // RETAINED: Ensures clicking the navigation icon still routes you to the profile page manually
+    // RETAINED: Manual navigation icon link routing to profile screen
     const homeProfileNavBtn = document.getElementById('home-profile-nav');
     if (homeProfileNavBtn) {
         homeProfileNavBtn.addEventListener('click', () => {
@@ -111,18 +139,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-        // Add this right beneath your existing homeProfileNavBtn logic block inside Section 1
+    // RETAINED: In-bubble redirect button routing to profile logs
     const bubbleProfileRedirectBtn = document.getElementById('bubble-profile-redirect-btn');
     if (bubbleProfileRedirectBtn && profileScreen) {
         bubbleProfileRedirectBtn.addEventListener('click', () => {
-            switchScreen(profileScreen); // Seamlessly transitions to the profile logs panel
+            switchScreen(profileScreen);
             
-            // Synchronize active highlights across your main top menu icons
             document.querySelectorAll('.nav-icon').forEach(icon => icon.classList.remove('active', 'active-nav'));
             const homeProfileNav = document.getElementById('home-profile-nav');
             if (homeProfileNav) homeProfileNav.classList.add('active');
         });
     }
+
 
 
     // ==========================================================================
